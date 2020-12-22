@@ -1,0 +1,42 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /
+  static_files: index.html
+  upload: index.html
+
+- url: /js
+  static_dir: js
+
+- url: /assets
+  static_dir: assets
+
+- url: /consent.pdf
+  static_files: consent.pdf
+  upload: consent.pdf
+  http_headers:
+    Content-Type: text/pdf
+    Content-Disposition: "attachment; filename=consent.pdf"
+
+- url: /PLS.pdf
+  static_files: PLS.pdf
+  upload: PLS.pdf
+  http_headers:
+    Content-Type: text/pdf
+    Content-Disposition: "attachment; filename=PLS.pdf"
+
+- url: /debrief.pdf
+  static_files: debrief.pdf
+  upload: debrief.pdf
+  http_headers:
+    Content-Type: text/pdf
+    Content-Disposition: "attachment; filename=debrief.pdf"
+
+- url: /favicon.ico
+  static_files: favicon.ico
+  upload: favicon.ico
+
+- url: /.*   # this grabs every other relative url not specified above
+  script: server.app
